@@ -13,8 +13,27 @@ interface Image {
     }
 }
 
+interface Category {
+  title: string;
+}
+
 export interface Post extends SantityBody {
     _type: "post";
     title: string;
+    year: string;
     mainImage: Image;
+    categories: Category;
+}
+
+export interface Biography extends SantityBody {
+  _type: "biography";
+  title: string;
+  slogan: string;
+  email: string;
+  mainImage: Image;
+  body: {
+    children: {
+      text: string;
+    }
+  }
 }

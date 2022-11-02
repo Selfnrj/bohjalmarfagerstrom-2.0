@@ -9,6 +9,11 @@ export default {
       type: 'string',
     },
     {
+        name: 'year',
+        title: 'Year',
+        type: 'string',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -16,12 +21,6 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-    },
-    {
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: {type: 'author'},
     },
     {
       name: 'mainImage',
