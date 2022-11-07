@@ -9,14 +9,16 @@ type Props = {
 
 function Layout({ children }: Props) {
   return (
-    <div>
+    <div className="h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-900 scrollbar-thin">
       <Head>
         <title>Bo Hjalmar Fagerström</title>
         <meta name="description" content="Konstgalleri över konstnärens verk" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar name="Bo Hjalmar Fagerström" />
-      { children }
+      <div className="Container">
+        { children }
+      </div>
       <Footer />
     </div>
   )

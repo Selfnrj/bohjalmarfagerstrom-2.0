@@ -9,8 +9,8 @@ type Props = {
 
 export default function Skulpturer({ posts }: Props) {
   return (
-    <div>
-      <Art posts={posts} category="Skulpturer" />
+    <div className="Container">
+      <Art posts={posts} category="Skulpturer" className="block" />
     </div>
   )
 }

@@ -6,10 +6,9 @@ import { Biography } from "../../typings";
 const query = groq`
   *[_type == "biography"][0] {
     ...,
-    body[0] { 
-      children[0] {
-        text
-      }
+    imagesGallery[],
+    body[0]{
+      ...,
     }
   }
 `

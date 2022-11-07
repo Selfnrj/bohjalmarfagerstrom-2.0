@@ -11,9 +11,11 @@ type Props = {
   biography: Biography;
 }
 
-export default function Arboretum({ posts, biography }: Props) {
+export default function Bocker({ posts, biography }: Props) {
+
   return (
     <div className="Container">
+      <Art posts={posts} category="Books" className="flex" />
       <motion.div 
         initial={{
           opacity: 0,
@@ -24,10 +26,8 @@ export default function Arboretum({ posts, biography }: Props) {
           scale: 1,
         }}
       >
-        <img className="mb-4" src={urlFor(biography.headerImage).url()} alt="" />
-        <p className="text-center mb-8">{biography.slogan}</p>
+        <img className="mb-4" src={urlFor(biography.bookImage).url()} alt="" />
       </motion.div>
-      <Art posts={posts} category="Återblick" className="block" />
     </div>
   )
 }

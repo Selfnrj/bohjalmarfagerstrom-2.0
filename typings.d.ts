@@ -31,9 +31,12 @@ export interface Biography extends SantityBody {
   slogan: string;
   email: string;
   mainImage: Image;
+  headerImage: Image;
+  bookImage: Image;
+  imagesGallery: Image;
   body: {
-    children: {
+    children: [{
       text: string;
-    }
+    }]
   }
 }

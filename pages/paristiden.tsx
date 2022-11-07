@@ -7,14 +7,8 @@ type Props = {
   posts: Post[];
 }
 
-export default function Arboretum({ posts }: Props) {
-  return (
-    <div className="Container">
-      <Art posts={posts} category="Arboretum-top" className="md:flex" />
-      <Art posts={posts} category="Arboretum" className="block" />
-      <Art posts={posts} category="Arboretum-bottom" className="md:flex" />
-    </div>
-  )
+export default function Paris({ posts }: Props) {
+  return <Art posts={posts} category="Paris" className="block" />
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {

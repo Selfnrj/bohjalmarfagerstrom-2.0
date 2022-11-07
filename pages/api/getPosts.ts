@@ -4,7 +4,7 @@ import { sanityClient } from "../../santity";
 import { Post } from "../../typings";
 
 const query = groq`
-  *[_type == "post"] {
+  *[_type == "post"] | order(_createdAt asc) {
     ...,
     categories[0]->
   }

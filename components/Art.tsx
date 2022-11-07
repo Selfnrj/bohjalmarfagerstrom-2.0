@@ -1,22 +1,36 @@
-﻿import React from 'react'
+﻿import React, { useState } from 'react'
 import { urlFor } from "../santity";
 import { Post } from "../typings";
+import { motion } from "framer-motion";
 
 type Props = {
   posts: Post[];
   category: string;
+  className: string;
 }
 
-//filter(category => category.categories === "Arboretum")
+function Art({ posts, category, className }: Props) {
 
-function Art({ posts, category }: Props) {
+  //const [selectedId, setSelectedId] = useState(false)
+
   return (
-    <div>
+    <div className={className}>
       {posts.filter(item => item.categories?.title === category).map((post) => (
-        <div key={post._id} className=" max-w-screen-sm m-auto mb-10">
-            <img className="mb-4" src={urlFor(post.mainImage).url()} alt="" />
-            <p className="text-center">{post.title} - {post.year}</p>
-        </div>
+        <motion.div 
+          key={post._id} 
+          className="max-w-xl m-auto mb-10 px-2"
+          initial={{
+            opacity: 0,
+            scale: 0.8,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+          }}
+        >
+          <img className="mb-4" src={urlFor(post.mainImage).url()} alt="" />
+          <p className="text-center">{post.title}{post.year && " - " + post.year}</p>
+        </motion.div>
       ))}
     </div>
   )

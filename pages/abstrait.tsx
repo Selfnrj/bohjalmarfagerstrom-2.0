@@ -7,12 +7,10 @@ type Props = {
   posts: Post[];
 }
 
-export default function Arboretum({ posts }: Props) {
+export default function Abstrait({ posts }: Props) {
   return (
     <div className="Container">
-      <Art posts={posts} category="Arboretum-top" className="md:flex" />
-      <Art posts={posts} category="Arboretum" className="block" />
-      <Art posts={posts} category="Arboretum-bottom" className="md:flex" />
+      <Art posts={posts} category="Abstrait" className="block" />
     </div>
   )
 }
