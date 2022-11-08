@@ -4,7 +4,7 @@ import { Biography } from "../typings";
 import { fetchBiography } from "../utils/fetchBiography";
 import Form from "../components/Form";
 
-type Props2 = {
+type BioProps = {
   biography: Biography;
 }
 
@@ -25,7 +25,7 @@ export default function Home({ biography, name, email, message }: Props) {
   ) 
 }
 
-export const getStaticProps: GetStaticProps<Props2> = async () => {
+export const getStaticProps: GetStaticProps<BioProps> = async () => {
   const biography: Biography = await fetchBiography();
 
 	return {

@@ -1,5 +1,6 @@
 ﻿import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
+import axios from 'axios';
 
 type Props = {
   name: string,
@@ -8,8 +9,28 @@ type Props = {
 };
 
 function Form({}: Props) {
-  const { register, handleSubmit, formState: { errors } } = useForm<Props>();
-  const onSubmit: SubmitHandler<Props> = data => console.log(data);
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<Props>();
+  //const onSubmit: SubmitHandler<Props> = data => console.log(data);
+
+  const onSubmit: SubmitHandler<Props> = async function onSubmitForm(values) {
+    let config = {
+      method: 'post',
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/contact`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: values,
+    };
+
+    try {
+      const response = await axios(config);
+      console.log(response);
+      if (response.status == 200) {
+        reset();
+        console.log("Email sent!");
+      }
+    } catch (err) {}
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
