@@ -47,7 +47,7 @@ function Form({}: Props) {
       {errors.email && <span className="text-rose-500 block mb-4">Please enter a valid email</span>}
       <textarea className={`border rounded block mt-6 mb-6 p-4 border-gray-400 w-full focus:outline-none ${errors.message ? 'ring-2 ring-red-500' : null}`} placeholder="Meddelande" {...register("message", { required: true })} />
       {errors.message && <span className="text-rose-500 block mb-4">This field is required</span>}
-      <input className="rounded py-4 px-8 bg-blue-600 hover:bg-blue-800 text-white cursor-pointer" type="submit" value="Skicka" />
+      <input className="rounded py-2 px-4 bg-blue-600 hover:bg-blue-800 text-white cursor-pointer" type="submit" value="Skicka" />
     </form>
   )
 }

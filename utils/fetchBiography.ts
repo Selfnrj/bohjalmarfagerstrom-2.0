@@ -6,7 +6,7 @@ export const fetchBiography = async() => {
     const data = await res.json();
     const biography: Biography = data.biography;
 
-    console.log("fetching biography", biography);
+    //console.log("fetching biography", biography);
 
     return biography;
 }

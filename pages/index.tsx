@@ -2,25 +2,23 @@ import { GetStaticProps } from "next"
 import Bio from "../components/Bio";
 import { Biography } from "../typings";
 import { fetchBiography } from "../utils/fetchBiography";
-import Form from "../components/Form";
-
-type BioProps = {
-  biography: Biography;
-}
 
 type Props = {
-  biography: Biography;
+  biography: Biography
   name: string
   email: string
   message: string
+}
+
+type BioProps = {
+  biography: Biography;
 }
 
 export default function Home({ biography, name, email, message }: Props) {
 
   return (
     <div className="Container">
-      <Bio biography={biography} />
-      <Form name={name} email={email} message={message} />
+      <Bio biography={biography} name={name} email={email} message={message} />
     </div>
   ) 
 }

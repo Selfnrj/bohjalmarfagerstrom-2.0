@@ -1,5 +1,4 @@
-﻿import React, { useState } from 'react'
-import { urlFor } from "../santity";
+﻿import { urlFor } from "../santity";
 import { Post } from "../typings";
 import { motion } from "framer-motion";
 
