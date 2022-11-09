@@ -1,6 +1,7 @@
 ﻿import { urlFor } from "../santity";
 import { Post } from "../typings";
 import { motion } from "framer-motion";
+import Image from 'next/image'
 
 type Props = {
   posts: Post[];
@@ -27,7 +28,16 @@ function Art({ posts, category, className }: Props) {
             scale: 1,
           }}
         >
-          <img className="mb-4" src={urlFor(post.mainImage).url()} alt="" />
+          <Image
+            src={urlFor(post.mainImage).url()}
+            placeholder='blur'
+            blurDataURL={urlFor(post.mainImage).url()}
+            className="mb-4"
+            alt={post.title}
+            priority
+            width={600}
+            height={600}
+          />
           <p className="text-center">{post.title}{post.year && " - " + post.year}</p>
         </motion.div>
       ))}

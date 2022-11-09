@@ -2,6 +2,7 @@
 import { urlFor } from "../santity";
 import { Biography } from "../typings";
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from "framer-motion";
 import Form from "./Form";
 
@@ -63,7 +64,13 @@ function Bio({ biography, name, email, message }: Props) {
           duration: 0.4,
         }}
       >
-        <img className="mb-4 w-max" src={urlFor(biography.mainImage).url()} alt="" />
+        <Image
+          src={urlFor(biography.mainImage).url()}
+          className="mb-4 w-max"
+          alt=""
+          width={500}
+          height={500}
+        />
       </motion.div>
       <motion.div 
         className="flex-1"
