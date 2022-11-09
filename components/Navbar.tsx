@@ -21,7 +21,7 @@ export default function Header({ name }: Props) {
 
   return (
     <header className="py-10 font-semibold Container">
-      <h1 className="text-4xl md:text-8xl font-thin text-center mb-12">{name}</h1>
+      <h1 className="text-4xl md:text-8xl font-thin text-center mb-12 text-red-500">{name}</h1>
       <nav className="border-t">
         <ul className="flex justify-center overflow-x-scroll md:overflow-hidden">
           {navlinks.map((link, index) => (
