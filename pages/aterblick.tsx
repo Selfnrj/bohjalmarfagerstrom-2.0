@@ -5,6 +5,7 @@ import { Post, Biography } from "../typings";
 import { fetchPosts } from "../utils/fetchPosts"
 import { fetchBiography } from "../utils/fetchBiography";
 import { motion } from "framer-motion";
+import Image from 'next/image'
 
 type Props = {
   posts: Post[];
@@ -24,7 +25,14 @@ export default function Arboretum({ posts, biography }: Props) {
           scale: 1,
         }}
       >
-        <img className="mb-4" src={urlFor(biography.headerImage).url()} alt="" />
+        <Image 
+          className="mb-4" 
+          src={urlFor(biography.headerImage).url()} 
+          alt=""
+          priority
+          width={1200}
+          height={600}
+        />
         <p className="text-center mb-8">{biography.slogan}</p>
       </motion.div>
       <Art posts={posts} category="Återblick" className="block" />

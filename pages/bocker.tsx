@@ -5,6 +5,7 @@ import { Post, Biography } from "../typings";
 import { fetchPosts } from "../utils/fetchPosts"
 import { fetchBiography } from "../utils/fetchBiography";
 import { motion } from "framer-motion";
+import Image from 'next/image'
 
 type Props = {
   posts: Post[];
@@ -26,7 +27,14 @@ export default function Bocker({ posts, biography }: Props) {
           scale: 1,
         }}
       >
-        <img className="mb-4" src={urlFor(biography.bookImage).url()} alt="" />
+        <Image 
+          className="mb-4" 
+          src={urlFor(biography.bookImage).url()}
+          alt=""
+          priority
+          width={1200}
+          height={600}
+        />
       </motion.div>
     </div>
   )
