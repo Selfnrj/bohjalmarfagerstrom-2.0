@@ -1,11 +1,12 @@
 ﻿import { GetStaticProps } from "next"
+import Image from 'next/image'
 import Art from "../components/Art"
+import Navbar from "../components/Navbar"
+import { motion } from "framer-motion";
 import { urlFor } from "../santity";
 import { Post, Biography } from "../typings";
 import { fetchPosts } from "../utils/fetchPosts"
 import { fetchBiography } from "../utils/fetchBiography";
-import { motion } from "framer-motion";
-import Image from 'next/image'
 
 type Props = {
   posts: Post[];
@@ -15,7 +16,8 @@ type Props = {
 export default function Bocker({ posts, biography }: Props) {
 
   return (
-    <div className="Container">
+    <>
+      <Navbar name={biography.title} />
       <Art posts={posts} category="Books" className="flex" />
       <motion.div 
         initial={{
@@ -36,7 +38,8 @@ export default function Bocker({ posts, biography }: Props) {
           height={600}
         />
       </motion.div>
-    </div>
+    </>
+      
   )
 }
 

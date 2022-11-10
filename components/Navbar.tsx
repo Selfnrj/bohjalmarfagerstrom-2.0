@@ -1,6 +1,7 @@
 ﻿import React, { ReactComponentElement } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 type Props = {
   name: string
@@ -21,6 +22,11 @@ export default function Header({ name }: Props) {
 
   return (
     <header className="py-10 font-semibold Container">
+      <Head>
+        <title>{name}</title>
+        <meta name="description" content="Konstgalleri över konstnärens verk" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <h1 className="text-4xl md:text-8xl font-thin text-center mb-12">{name}</h1>
       <nav className="border-t">
         <ul className="flex justify-center overflow-x-scroll md:overflow-hidden">

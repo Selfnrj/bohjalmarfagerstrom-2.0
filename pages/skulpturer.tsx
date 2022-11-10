@@ -1,26 +1,32 @@
 ﻿import { GetStaticProps } from "next"
 import Art from "../components/Art"
-import { Post } from "../typings";
+import Navbar from "../components/Navbar"
+import { Post, Biography } from "../typings";
+import { fetchBiography } from "../utils/fetchBiography";
 import { fetchPosts } from "../utils/fetchPosts"
 
 type Props = {
   posts: Post[];
+  biography: Biography;
 }
 
-export default function Skulpturer({ posts }: Props) {
+export default function Skulpturer({ posts, biography }: Props) {
   return (
-    <div className="Container">
+    <>
+      <Navbar name={biography.title} /> 
       <Art posts={posts} category="Skulpturer" className="block" />
-    </div>
+    </>
   )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
 	const posts: Post[] = await fetchPosts();
+  const biography: Biography = await fetchBiography();
 
 	return {
 		props: {
 			posts,
+      biography,
 		},
 
 		revalidate: 10,

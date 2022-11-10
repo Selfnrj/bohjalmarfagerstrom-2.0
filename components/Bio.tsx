@@ -66,6 +66,7 @@ function Bio({ biography, name, email, message }: Props) {
       >
         <Image
           src={urlFor(biography.mainImage).url()}
+          priority
           className="mb-4 w-max"
           alt=""
           width={500}
