@@ -1,5 +1,4 @@
-﻿import React, { ReactComponentElement } from 'react'
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
