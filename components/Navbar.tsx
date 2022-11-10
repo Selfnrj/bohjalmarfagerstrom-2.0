@@ -21,7 +21,7 @@ export default function Header({ name }: Props) {
   const router = useRouter();
 
   return (
-    <header className="py-10 font-semibold Container">
+    <header className="py-10 font-semibold">
       <Head>
         <title>{name}</title>
         <meta name="description" content="Konstgalleri över konstnärens verk" />
@@ -29,7 +29,7 @@ export default function Header({ name }: Props) {
       </Head>
       <h1 className="text-4xl md:text-8xl font-thin text-center mb-12">{name}</h1>
       <nav className="border-t">
-        <ul className="flex justify-center overflow-x-scroll md:overflow-hidden">
+        <ul className="flex md:justify-center overflow-x-scroll md:overflow-hidden">
           {navlinks.map((link, index) => (
             <li key={index} className="flex">
               <Link href={link.path} className={router.pathname === link.path ? "navlink active" : "navlink"}>
