@@ -6,7 +6,7 @@ export const fetchPosts = async() => {
     const data = await res.json();
     const posts: Post[] = data.posts;
 
-    //console.log("fetching posts", posts);
+    console.log("fetching posts", posts);
 
     return posts;
 }
