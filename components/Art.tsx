@@ -12,13 +12,13 @@ type Props = {
 
 function Art({ posts, category, className }: Props) {
 
-  const [imageToShow, setImageToShow] = useState("");
-  const [lightboxDisplay, setLightBoxDisplay] = useState(false);
+  const [imageToShow, setImageToShow] = useState<any>({});
+  const [lightboxDisplay, setLightBoxDisplay] = useState<boolean>(false);
 
   //looping through our images array to create img elements
-  const imageCards = posts.filter(item => item.categories?.title === category).map((post) => (
+  const imageCards = posts.filter(item => item.categories?.title === category).map(({mainImage, title, year, _id}) => (
     <motion.div 
-      key={post._id} 
+      key={_id} 
       className="max-w-xl m-auto mb-10 px-2"
       initial={{
         opacity: 0,
@@ -30,18 +30,18 @@ function Art({ posts, category, className }: Props) {
       }}
     >
       <Image
-        onClick={() => showImage(urlFor(post.mainImage).url())}
-        src={urlFor(post.mainImage).url()}
+        onClick={() => showImage(urlFor(mainImage).url())}
+        src={urlFor(mainImage).url()}
         placeholder='blur'
-        blurDataURL={urlFor(post.mainImage).url()}
+        blurDataURL={urlFor(mainImage).url()}
         className="mb-4 cursor-pointer"
-        alt={post.title}
+        alt={title}
         priority
         width={600}
         height={600}
       />
       
-      <p className="text-center">{post.title}{post.year && " - " + post.year}</p>
+      <p className="text-center">{title}{year && " - " + year}</p>
     </motion.div>
   ));
 
@@ -62,20 +62,19 @@ function Art({ posts, category, className }: Props) {
     setLightBoxDisplay(false);
   };
 
-  const imageUrl = posts.filter(item => item.categories?.title === category).map(item => item.mainImage);
+  const images = posts.filter(item => item.categories?.title === category).map(({ mainImage }) => mainImage);
 
   //show next image in lightbox
   const showNext = (e: any) => {
     e.stopPropagation();
-    console.log(imageToShow);
     
-    let currentIndex = posts.filter(item => item.categories?.title === category).map(item => item.mainImage).indexOf(imageToShow);
+    let currentIndex = images.indexOf(imageToShow);
 
     console.log(currentIndex);
-    if (currentIndex >= imageUrl.length - 1) {
+    if (currentIndex >= images.length - 1) {
       setLightBoxDisplay(false);
     } else {
-      let nextImage = imageUrl[currentIndex + 1];
+      let nextImage = images[currentIndex + 1];
       setImageToShow(nextImage);
       console.log(nextImage);
     }
@@ -84,11 +83,11 @@ function Art({ posts, category, className }: Props) {
   //show previous image in lightbox
   const showPrev = (e: any) => {
     e.stopPropagation();
-    let currentIndex = imageUrl.indexOf(imageToShow);
+    let currentIndex = posts.indexOf(imageToShow);
     if (currentIndex <= 0) {
       setLightBoxDisplay(false);
     } else {
-      let nextImage = imageUrl[currentIndex - 1];
+      let nextImage = posts[currentIndex - 1];
       setImageToShow(nextImage);
     }
   };
@@ -101,7 +100,7 @@ function Art({ posts, category, className }: Props) {
         <div className="flex justify-between items-center overflow-y-hidden fixed inset-0 bg-black/40" onClick={hideLightBox}>
           <button className="absolute right-4 top-4" onClick={hideLightBox}>{exit}</button>
           <button className="bg-black text-white p-4 text-xl" onClick={showPrev}>⭠</button>
-          <Image alt="image" className="w-auto h-auto" width={900} height={900} src={urlFor(imageToShow).url()} />
+          <Image alt="image" className="w-auto h-auto" width={900} height={900} src={urlFor(imageToShow).url()}/>
           <button className="bg-black text-white p-4 text-xl" onClick={showNext}>⭢</button>
         </div>
        : ""
