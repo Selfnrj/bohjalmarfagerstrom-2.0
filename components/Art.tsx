@@ -51,6 +51,18 @@ function Art({ posts, category, className }: Props) {
     </svg>
   )
 
+  const arrowRight = (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+    </svg>
+  )
+
+  const arrowLeft = (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+    </svg>
+  )
+  
   //function to show a specific image in the lightbox, amd make lightbox visible
   const showImage = (image: any) => {
     setImageToShow(image);
@@ -62,7 +74,7 @@ function Art({ posts, category, className }: Props) {
     setLightBoxDisplay(false);
   };
 
-  const images = posts.filter(item => item.categories?.title === category).map(({ mainImage }) => mainImage);
+  const images = posts.filter(item => item.categories?.title === category).map(({ mainImage }) => urlFor(mainImage).url());
 
   //show next image in lightbox
   const showNext = (e: any) => {
@@ -83,11 +95,11 @@ function Art({ posts, category, className }: Props) {
   //show previous image in lightbox
   const showPrev = (e: any) => {
     e.stopPropagation();
-    let currentIndex = posts.indexOf(imageToShow);
+    let currentIndex = images.indexOf(imageToShow);
     if (currentIndex <= 0) {
       setLightBoxDisplay(false);
     } else {
-      let nextImage = posts[currentIndex - 1];
+      let nextImage = images[currentIndex - 1];
       setImageToShow(nextImage);
     }
   };
@@ -97,11 +109,18 @@ function Art({ posts, category, className }: Props) {
       {imageCards}
       {
         lightboxDisplay ? 
-        <div className="flex justify-between items-center overflow-y-hidden fixed inset-0 bg-black/40" onClick={hideLightBox}>
-          <button className="absolute right-4 top-4" onClick={hideLightBox}>{exit}</button>
-          <button className="bg-black text-white p-4 text-xl" onClick={showPrev}>⭠</button>
-          <Image alt="image" className="w-auto h-auto" width={900} height={900} src={urlFor(imageToShow).url()}/>
-          <button className="bg-black text-white p-4 text-xl" onClick={showNext}>⭢</button>
+        <div className="flex justify-between items-center overflow-y-hidden fixed inset-0 bg-black/90 p-4" onClick={hideLightBox}>
+          <button className="absolute right-4 top-4 z-10" onClick={hideLightBox}>{exit}</button>
+          <button className="bg-black text-white p-4 text-xl absolute left-0 z-10" onClick={showPrev}>{arrowLeft}</button>
+          <Image 
+            alt="image" 
+            className="px-16 transition-opacity duration-150 ease-in-out" 
+            fill
+            style={{
+              objectFit: 'contain',
+            }}
+            src={urlFor(imageToShow).url()} />
+          <button className="bg-black text-white p-4 text-xl absolute right-0 z-10" onClick={showNext}>{arrowRight}</button>
         </div>
        : ""
       }
