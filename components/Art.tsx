@@ -114,7 +114,7 @@ function Art({ posts, category, className }: Props) {
           <button className="bg-black text-white p-4 text-xl absolute left-0 z-10" onClick={showPrev}>{arrowLeft}</button>
           <Image 
             alt="image" 
-            className="px-16 transition-opacity duration-150 ease-in-out" 
+            className="px-16" 
             fill
             style={{
               objectFit: 'contain',
