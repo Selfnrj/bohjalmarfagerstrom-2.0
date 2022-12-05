@@ -18,6 +18,7 @@ function Form({}: Props) {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/contact`,
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_BASE_URL,
       },
       data: values,
     };
