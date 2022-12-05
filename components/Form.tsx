@@ -1,4 +1,4 @@
-﻿import React from 'react'
+﻿import React, { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import axios from 'axios';
 
@@ -11,8 +11,10 @@ type Props = {
 function Form({}: Props) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Props>();
   //const onSubmit: SubmitHandler<Props> = data => console.log(data);
+  const [statusMessage, setStatusMessage] = useState<any>();
 
   const onSubmit: SubmitHandler<Props> = async function onSubmitForm(values) {
+    
     let config = {
       method: 'post',
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/contact`,
@@ -25,12 +27,14 @@ function Form({}: Props) {
 
     try {
       const response = await axios(config);
-      console.log(response);
+      //console.log(response);
       if (response.status == 200) {
         reset();
-        console.log("Email sent!");
+        setStatusMessage(<p className='text-green-500 mt-4'>Meddelande skickat!</p>);
       }
-    } catch (err) {}
+    } catch (err) {
+      setStatusMessage(<p className='text-rose-500 mt-4'>Det gick inte att skicka meddelandet! Vänligen försök igen senare.</p>);
+    }
   }
 
   return (
@@ -49,6 +53,7 @@ function Form({}: Props) {
       <textarea className={`border rounded block mt-6 mb-6 p-4 border-gray-400 w-full focus:outline-none ${errors.message ? 'ring-2 ring-red-500' : null}`} placeholder="Meddelande" {...register("message", { required: true })} />
       {errors.message && <span className="text-rose-500 block mb-4">This field is required</span>}
       <input className="rounded py-2 px-4 bg-blue-600 hover:bg-blue-800 text-white cursor-pointer" type="submit" value="Skicka" />
+      {statusMessage}
     </form>
   )
 }
