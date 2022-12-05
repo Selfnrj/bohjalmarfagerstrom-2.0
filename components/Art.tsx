@@ -13,6 +13,7 @@ type Props = {
 function Art({ posts, category, className }: Props) {
 
   const [imageToShow, setImageToShow] = useState<any>({});
+  const [textToShow, setTextToShow] = useState<any>({});
   const [lightboxDisplay, setLightBoxDisplay] = useState<boolean>(false);
 
   //looping through our images array to create img elements
@@ -30,7 +31,7 @@ function Art({ posts, category, className }: Props) {
       }}
     >
       <Image
-        onClick={() => showImage(urlFor(mainImage).url())}
+        onClick={() => showImage(urlFor(mainImage).url(), (title + (year === undefined ? "" : " - " + year)))}
         src={urlFor(mainImage).url()}
         placeholder='blur'
         blurDataURL={urlFor(mainImage).url()}
@@ -64,8 +65,9 @@ function Art({ posts, category, className }: Props) {
   )
   
   //function to show a specific image in the lightbox, amd make lightbox visible
-  const showImage = (image: any) => {
+  const showImage = (image: any, text: string) => {
     setImageToShow(image);
+    setTextToShow(text);
     setLightBoxDisplay(true);
   };
 
@@ -75,20 +77,24 @@ function Art({ posts, category, className }: Props) {
   };
 
   const images = posts.filter(item => item.categories?.title === category).map(({ mainImage }) => urlFor(mainImage).url());
-
+  const titles = posts.filter(item => item.categories?.title === category).map(({ title, year }) => title + (year === undefined ? "" : " - " + year));
+  //console.log(titles);
+  
   //show next image in lightbox
   const showNext = (e: any) => {
     e.stopPropagation();
     
     let currentIndex = images.indexOf(imageToShow);
+    let currentTitle = titles.indexOf(textToShow);
 
-    console.log(currentIndex);
+    //console.log(currentIndex);
     if (currentIndex >= images.length - 1) {
       setLightBoxDisplay(false);
     } else {
       let nextImage = images[currentIndex + 1];
       setImageToShow(nextImage);
-      console.log(nextImage);
+      setTextToShow(titles[currentTitle + 1]);
+      //console.log(nextImage);
     }
   };
 
@@ -96,10 +102,13 @@ function Art({ posts, category, className }: Props) {
   const showPrev = (e: any) => {
     e.stopPropagation();
     let currentIndex = images.indexOf(imageToShow);
+    let currentTitle = titles.indexOf(textToShow);
+
     if (currentIndex <= 0) {
       setLightBoxDisplay(false);
     } else {
       let nextImage = images[currentIndex - 1];
+      setTextToShow(titles[currentTitle - 1]);
       setImageToShow(nextImage);
     }
   };
@@ -114,12 +123,13 @@ function Art({ posts, category, className }: Props) {
           <button className="bg-black text-white p-4 text-xl absolute left-0 z-10" onClick={showPrev}>{arrowLeft}</button>
           <Image 
             alt="image" 
-            className="px-16" 
+            className="p-14" 
             fill
             style={{
               objectFit: 'contain',
             }}
             src={urlFor(imageToShow).url()} />
+          <p className="absolute right-0 left-0 text-center bottom-0 p-4 text-white z-10">{textToShow}</p>
           <button className="bg-black text-white p-4 text-xl absolute right-0 z-10" onClick={showNext}>{arrowRight}</button>
         </div>
        : ""
