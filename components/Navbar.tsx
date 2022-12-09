@@ -31,7 +31,7 @@ function Navbar({name}: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-4xl md:text-8xl font-thin text-center mb-12">{name}</h1>
-      <nav className="grid grid-cols-4 md:grid-cols-7 text-xs md:text-sm gap-4 pb-4 max-w-6xl
+      <nav className="grid grid-cols-3 md:grid-cols-7 text-xs md:text-sm gap-4 pb-4 max-w-6xl
       mx-auto border-b">
         {navlinks.map((link) => (
           <NavLink key={link.title} path={link.path} link={link.title} isActive={isActive(link.path)} />

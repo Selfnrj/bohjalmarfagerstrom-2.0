@@ -14,9 +14,9 @@ export default function Arboretum({ posts, biography }: Props) {
   return (
     <>
       <Navbar name={biography.title} />
-      <Art posts={posts} category="Arboretum-top" className="md:flex" />
+      <Art posts={posts} category="Arboretum-top" className="grid grid-cols-1 md:grid-cols-3 gap-4" />
       <Art posts={posts} category="Arboretum" className="block" />
-      <Art posts={posts} category="Arboretum-bottom" className="md:flex" />
+      <Art posts={posts} category="Arboretum-bottom" className="grid grid-cols-1 md:grid-cols-3 gap-4" />
     </>
   )
 }

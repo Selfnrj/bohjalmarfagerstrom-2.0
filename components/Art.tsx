@@ -22,7 +22,7 @@ function Art({ posts, category, className }: Props) {
   const imageCards = posts.filter(item => item.categories?.title === category).map(({mainImage, title, year, _id}) => (
     <motion.div 
       key={_id} 
-      className="max-w-xl m-auto mb-10 px-2"
+      className="max-w-xl m-auto mb-10"
       initial={{
         opacity: 0,
         scale: 0.8,

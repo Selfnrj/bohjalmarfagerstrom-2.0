@@ -18,7 +18,7 @@ export default function Bocker({ posts, biography }: Props) {
   return (
     <>
       <Navbar name={biography.title} />
-      <Art posts={posts} category="Books" className="flex" />
+      <Art posts={posts} category="Books" className="grid grid-cols-1 md:grid-cols-4 gap-4" />
       <motion.div 
         initial={{
           opacity: 0,
