@@ -6,7 +6,7 @@ type Props = {
 
 function Layout({ children }: Props) {
   return (
-    <div className="h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-900 scrollbar-thin">
+    <div className="bg-gray-100 text-black dark:bg-zinc-900 dark:text-white h-screen scrollbar-track-gray-200 scrollbar-thumb-gray-900 scrollbar-thin">
       <div className="Container">
         { children }
       </div>
