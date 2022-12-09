@@ -6,7 +6,7 @@ type Props = {
   name: string;
 }
 
-function Header({name}: Props) {
+function Navbar({name}: Props) {
   const router = useRouter();
 
   const isActive = (path: string) => {
@@ -41,4 +41,4 @@ function Header({name}: Props) {
   )
 }
 
-export default Header
+export default Navbar
