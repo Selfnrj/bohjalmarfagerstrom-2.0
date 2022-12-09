@@ -4,11 +4,13 @@
 
 @layer components {
   .active {
-    @apply border-t-2 border-black
+    @apply underline decoration-blue-600 underline-offset-8 cursor-default font-bold scale-110;
   }
 
-  .navlink {
-    @apply px-8 py-4 hover:bg-gray-200 font-light
+  .navLink {
+    @apply hover:underline decoration-blue-600 text-center decoration-2 active:underline
+    underline-offset-8 rounded-full p-4 cursor-pointer hover:font-bold capitalize 
+    hover:scale-110 transition-transform duration-200 ease-out;
   }
 
   .Container {

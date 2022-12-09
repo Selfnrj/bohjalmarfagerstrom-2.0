@@ -1,23 +1,27 @@
-﻿import Link from 'next/link'
+﻿import Head from 'next/head'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
+import NavLink from "./NavLink";
 
 type Props = {
-  name: string
+  name: string;
 }
 
-export default function Header({ name }: Props) {
-  const navlinks = [
-    {title: 'Biografi', path: '/'},
-    {title: 'Återblick', path: '/aterblick'},
-    {title: 'Paristiden', path: '/paristiden'},
-    {title: 'Skulpturer', path: '/skulpturer'},
-    {title: 'Arboretum', path: '/arboretum'},
-    {title: "l'Art abstrait", path: '/abstrait'},
-    {title: "Böcker", path: '/bocker'},
-  ]
-
+function Header({name}: Props) {
   const router = useRouter();
+
+  const isActive = (path: string) => {
+    return router.pathname.split("/").pop() === path;
+  };
+
+  const navlinks = [
+    {title: 'biografi', path: ''},
+    {title: 'återblick', path: 'aterblick'},
+    {title: 'paristiden', path: 'paristiden'},
+    {title: 'skulpturer', path: 'skulpturer'},
+    {title: 'arboretum', path: 'arboretum'},
+    {title: "l'Art abstrait", path: 'abstrait'},
+    {title: "böcker", path: 'bocker'},
+  ]
 
   return (
     <header className="py-10 font-semibold">
@@ -27,17 +31,14 @@ export default function Header({ name }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-4xl md:text-8xl font-thin text-center mb-12">{name}</h1>
-      <nav className="border-t">
-        <ul className="flex md:justify-center overflow-x-scroll md:overflow-hidden">
-          {navlinks.map((link, index) => (
-            <li key={index} className="flex">
-              <Link href={link.path} className={router.pathname === link.path ? "navlink active" : "navlink"}>
-                {link.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <nav className="grid grid-cols-4 md:grid-cols-7 text-xs md:text-sm gap-4 pb-4 max-w-6xl
+      mx-auto border-b">
+        {navlinks.map((link) => (
+          <NavLink key={link.title} path={link.path} link={link.title} isActive={isActive(link.path)} />
+        ))}
       </nav>
     </header>
   )
 }
+
+export default Header
