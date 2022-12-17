@@ -31,6 +31,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       biography,
 		},
 
-		//revalidate: 60,
+		revalidate: 60,
 	}
 }
