@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from "framer-motion";
 import Form from "./Form";
+import { PortableText } from "@portabletext/react";
 
 
 type Props = {
@@ -88,7 +89,7 @@ function Bio({ biography, name, email, message }: Props) {
         }}
       >
         <p className="mb-8 text-2xl font-extralight">
-          <b>{biography.body.children[0].text}</b>{biography.body.children[0 + 1].text}
+          <PortableText value={biography.body} />
         </p>
         <button
           className="rounded py-2 px-4 bg-blue-600 hover:bg-blue-800 text-white cursor-pointer"
