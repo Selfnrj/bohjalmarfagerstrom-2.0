@@ -6,7 +6,13 @@ import { Post } from "../../typings";
 const query = groq`
   *[_type == "post"] | order(_createdAt asc) {
     ...,
-    categories[0]->
+    categories[0]->,
+    mainImage {
+      asset-> {
+        ...,
+        metadata
+      }
+    }
   }
 `
 
