@@ -10,7 +10,9 @@ const query = groq`
     mainImage {
       asset-> {
         ...,
-        metadata
+        metadata {
+          lqip
+        }
       }
     }
   }

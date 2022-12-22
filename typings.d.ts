@@ -8,9 +8,11 @@
 interface Image {
     _type: "image";
     asset: {
-        _ref: string;
-        _type: "reference";
-        metadata: any;
+      _ref: string;
+      _type: "reference";
+      metadata: {
+        lqip: string;
+      }
     }
 }
 
